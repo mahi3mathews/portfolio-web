@@ -1,0 +1,47 @@
+.logo {
+    padding-top: 100px;
+}
+
+#home-logo {
+    position: relative;
+    top: auto;
+    z-index: 999;
+}
+
+#home-logo.fixed {
+    position: fixed;
+    top: 3vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition-duration: 1ms;
+}
+#logo-img {
+    transition: all 0.3s ease-in-out;
+}
+
+.home-display {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+.content-wrapper {
+    position: relative;
+    z-index: 1; /* Ensure this is higher than .nav-bar */
+}
+.desc-img-border {
+    border: 8px solid var(--secondary-light);
+    border-radius: 50%;
+    padding: 20px;
+}
+.desc-container {
+    margin-right: 10px;
+}
+
+.home {
+    padding-top: 50px;
+}
+
+.smedia-icon:hover {
+    color: var(--primary-light);
+}
