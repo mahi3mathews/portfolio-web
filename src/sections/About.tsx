@@ -66,8 +66,13 @@ export function About({ tools, isDarkTheme }: AboutProps) {
                   alt="Mahima Mathews"
                   className="w-full h-full object-cover rounded-xl"
                   onError={(e) => {
-                    e.target.style.display = 'none';
-                    e.target.nextSibling.style.display = 'flex';
+                    const target = e.target as HTMLElement;
+                    target.style.display = 'none';
+
+                    const next = target.nextElementSibling as HTMLElement;
+                    if (next) {
+                      next.style.display = 'flex';
+                    }
                   }}
                 />
                 <div className="w-full h-full rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 hidden items-center justify-center text-4xl font-bold text-white">
@@ -101,9 +106,13 @@ export function About({ tools, isDarkTheme }: AboutProps) {
                         alt={tool.name}
                         className="w-[50px] h-[50px] mb-[8px] mx-[10px]"
                         onError={(e) => {
-                          console.log(e.target, 'error for image');
-                          e.target.style.display = 'none';
-                          e.target.nextSibling.style.display = 'flex';
+                          const target = e.target as HTMLElement;
+                          target.style.display = 'none';
+
+                          const next = target.nextElementSibling as HTMLElement;
+                          if (next) {
+                            next.style.display = 'flex';
+                          }
                         }}
                       />
                       <p className="w-full h-full p-[10px] my-[10px] rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 hidden items-center justify-center text-sm font-bold text-white">

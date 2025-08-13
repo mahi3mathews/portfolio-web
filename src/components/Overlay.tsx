@@ -4,7 +4,7 @@ type OverlayProps = {
   isDarkTheme: boolean;
 };
 export function Overlay({ isDarkTheme }: OverlayProps) {
-  const particlesRef = useRef(null);
+  const particlesRef = useRef<HTMLDivElement>(null);
 
   // Particle system with fractal-inspired movement
   useEffect(() => {

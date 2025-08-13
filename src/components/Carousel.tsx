@@ -8,7 +8,7 @@ export function Carousel({ content }: CarouselProps) {
   return (
     <div>
       {content.map((item, index) => {
-        return <div key={`carousel-${index}`}></div>;
+        return <div key={`carousel-${index}`}>{item?.content}</div>;
       })}
     </div>
   );
