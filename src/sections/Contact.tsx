@@ -8,6 +8,7 @@ import {
   EMAILJS_SERVICE_ID,
   EMAILJS_TEMPLATE_ID,
 } from '../assets/environment_variables';
+import { Card } from '../components/Card';
 
 // Define types for form data
 interface FormData {
@@ -22,7 +23,11 @@ interface MathCaptcha {
   answer: number;
 }
 
-export function Contact() {
+type ContactProps = {
+  isDarkTheme: boolean;
+};
+
+export function Contact({ isDarkTheme }: ContactProps) {
   const { register, handleSubmit, reset } = useForm<FormData>();
   const [showToast, setShowToast] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
@@ -225,7 +230,7 @@ export function Contact() {
         </div>
         <div className="contact-content fade-in">
           <div className="contact-info">
-            <p className="text-lg opacity-80 max-w-2xl mx-auto">
+            <p className="text-lg opacity-80 max-w-2xl mx-auto leading-relaxed">
               I'm always interested in new opportunities and exciting projects. Whether you have a
               question about my work, want to collaborate, or just want to say hello, I'd love to
               hear from you.
@@ -257,149 +262,162 @@ export function Contact() {
               </div>
             </div>
           </div>
-          <form
-            ref={formRef}
-            onSubmit={handleSubmit(onSubmit)}
-            className="contact-form"
-            id="contactForm"
-            onFocus={handleUserInteraction}
-            onMouseMove={handleUserInteraction}
-            onKeyDown={handleUserInteraction}
-          >
-            {/* Honeypot field - hidden from users but visible to bots */}
-            <div
-              style={{ position: 'absolute', left: '-9999px', opacity: 0, pointerEvents: 'none' }}
+          <Card isDarkTheme={isDarkTheme} disableAnimation>
+            <form
+              ref={formRef}
+              onSubmit={handleSubmit(onSubmit)}
+              id="contactForm"
+              onFocus={handleUserInteraction}
+              onMouseMove={handleUserInteraction}
+              onKeyDown={handleUserInteraction}
             >
-              <input
-                ref={honeypotRef}
-                type="text"
-                name="website"
-                tabIndex={-1}
-                autoComplete="off"
-                placeholder="Leave this field empty"
-              />
-            </div>
-
-            <div className="form-group">
-              <label>Full Name</label>
-              <input
-                type="text"
-                id="name"
-                {...register('name', {
-                  required: true,
-                  minLength: 2,
-                  maxLength: 100,
-                  pattern: /^[a-zA-Z\s]+$/,
-                })}
-                required
-                className="outline-none focus:border-cyan-500 focus:shadow-cyan"
-                onFocus={handleUserInteraction}
-              />
-            </div>
-
-            <div className="form-group">
-              <label>Email Address</label>
-              <input
-                type="email"
-                id="email"
-                {...register('email', {
-                  required: true,
-                  maxLength: 254,
-                  pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                })}
-                required
-                className="outline-none focus:border-cyan-500 focus:shadow-cyan"
-                onFocus={handleUserInteraction}
-              />
-            </div>
-
-            <div className="form-group">
-              <label>Subject</label>
-              <input
-                type="text"
-                id="subject"
-                {...register('subject', {
-                  required: true,
-                  minLength: 5,
-                  maxLength: 200,
-                })}
-                required
-                className="outline-none focus:border-cyan-500 focus:shadow-cyan"
-                onFocus={handleUserInteraction}
-              />
-            </div>
-
-            <div className="form-group">
-              <label>Message</label>
-              <textarea
-                id="message"
-                {...register('message', {
-                  required: true,
-                  minLength: 10,
-                  maxLength: 2000,
-                })}
-                required
-                className="outline-none focus:border-cyan-500 focus:shadow-cyan"
-                onFocus={handleUserInteraction}
-              ></textarea>
-            </div>
-
-            {/* Math CAPTCHA */}
-            <div className="form-group">
-              <label className="text-cyan-400">{mathCaptcha.question}</label>
-              <input
-                type="number"
-                value={userCaptchaAnswer}
-                onChange={(e) => setUserCaptchaAnswer(e.target.value)}
-                required
-                className="outline-none focus:border-cyan-500 focus:shadow-cyan w-20"
-                placeholder="Answer"
-                onFocus={handleUserInteraction}
-              />
-              <small className="text-gray-400 block mt-1">
-                Math time! A simple check to verify it’s really you
-              </small>
-            </div>
-
-            {/* Rate limiting warning */}
-            {isRateLimited && (
-              <div className="mb-4 p-3 bg-yellow-900/20 border border-yellow-600/30 rounded-lg">
-                <p className="text-yellow-400 text-sm">
-                  You can send another message in a few minutes. This helps prevent spam.
-                </p>
+              {/* Honeypot field - hidden from users but visible to bots */}
+              <div
+                style={{ position: 'absolute', left: '-9999px', opacity: 0, pointerEvents: 'none' }}
+              >
+                <input
+                  ref={honeypotRef}
+                  type="text"
+                  name="website"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  placeholder="Leave this field empty"
+                />
               </div>
-            )}
 
-            {/* Submission count warning */}
-            {submissionCount >= 2 && (
-              <div className="mb-4 p-3 bg-orange-900/20 border border-orange-600/30 rounded-lg">
-                <p className="text-orange-400 text-sm">
-                  You've sent {submissionCount} message(s) recently. Limit: 3 per hour.
-                </p>
+              <div className="form-group">
+                <label>Full Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  {...register('name', {
+                    required: true,
+                    minLength: 2,
+                    maxLength: 100,
+                    pattern: /^[a-zA-Z\s]+$/,
+                  })}
+                  required
+                  className={`border ${
+                    isDarkTheme ? 'border-black/12' : 'border-black/10'
+                  } outline-none focus:border-cyan-500 focus:shadow-cyan`}
+                  onFocus={handleUserInteraction}
+                />
               </div>
-            )}
 
-            {loading ? (
-              <div className="flex justify-center">
-                <Loader className="h-10 w-10 text-cyan-600 animate-spin" />
+              <div className="form-group">
+                <label>
+                  <span>Email Address</span>
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  {...register('email', {
+                    required: true,
+                    maxLength: 254,
+                    pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                  })}
+                  required
+                  className={`border ${
+                    isDarkTheme ? 'border-black/12' : 'border-black/10'
+                  } outline-none focus:border-cyan-500 focus:shadow-cyan`}
+                  onFocus={handleUserInteraction}
+                />
               </div>
-            ) : (
-              <div className="flex flex-col items-center">
-                <button
-                  type="submit"
-                  disabled={isRateLimited || submissionCount >= 3}
-                  className={`px-8 py-4 rounded-full font-semibold transition-all duration-300 flex items-center gap-2 ${
-                    isRateLimited || submissionCount >= 3
-                      ? 'bg-gray-600 text-gray-400 cursor-not-allowed'
-                      : 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white hover:shadow-xl hover:scale-105'
-                  }`}
-                >
-                  Send Message
-                </button>
-                {error && <p className="mt-[10px] text-red-400">{error}</p>}
+
+              <div className="form-group">
+                <label>Subject</label>
+                <input
+                  type="text"
+                  id="subject"
+                  {...register('subject', {
+                    required: true,
+                    minLength: 5,
+                    maxLength: 200,
+                  })}
+                  required
+                  className={`border ${
+                    isDarkTheme ? 'border-black/12' : 'border-black/10'
+                  } outline-none focus:border-cyan-500 focus:shadow-cyan`}
+                  onFocus={handleUserInteraction}
+                />
               </div>
-            )}
-          </form>
+
+              <div className="form-group">
+                <label>Message</label>
+                <textarea
+                  id="message"
+                  {...register('message', {
+                    required: true,
+                    minLength: 10,
+                    maxLength: 2000,
+                  })}
+                  required
+                  className={`border ${
+                    isDarkTheme ? 'border-black/12' : 'border-black/10'
+                  }  outline-none focus:border-cyan-500 focus:shadow-cyan`}
+                  onFocus={handleUserInteraction}
+                ></textarea>
+              </div>
+
+              {/* Math CAPTCHA */}
+              <div className="form-group">
+                <label className="text-400">{mathCaptcha.question}</label>
+                <input
+                  type="number"
+                  value={userCaptchaAnswer}
+                  onChange={(e) => setUserCaptchaAnswer(e.target.value)}
+                  required
+                  className={`border ${
+                    isDarkTheme ? 'border-black/12' : 'border-black/10'
+                  } outline-none focus:border-cyan-500 focus:shadow-cyan w-20`}
+                  placeholder="Answer"
+                  onFocus={handleUserInteraction}
+                />
+                <small className="text-gray-400 block mt-1">
+                  Math time! A simple check to verify it’s really you
+                </small>
+              </div>
+
+              {/* Rate limiting warning */}
+              {isRateLimited && (
+                <div className="mb-4 p-3 bg-yellow-900/20 border border-yellow-600/30 rounded-lg">
+                  <p className="text-yellow-400 text-sm">
+                    You can send another message in a few minutes. This helps prevent spam.
+                  </p>
+                </div>
+              )}
+
+              {/* Submission count warning */}
+              {submissionCount >= 2 && (
+                <div className="mb-4 p-3 bg-orange-900/20 border border-orange-600/30 rounded-lg">
+                  <p className="text-orange-400 text-sm">
+                    You've sent {submissionCount} message(s) recently. Limit: 3 per hour.
+                  </p>
+                </div>
+              )}
+
+              {loading ? (
+                <div className="flex justify-center">
+                  <Loader className="h-10 w-10 text-cyan-600 animate-spin" />
+                </div>
+              ) : (
+                <div className="flex flex-col items-center">
+                  <button
+                    type="submit"
+                    disabled={isRateLimited || submissionCount >= 3}
+                    className={`px-8 py-4 rounded-full font-semibold transition-all duration-300 flex items-center gap-2 ${
+                      isRateLimited || submissionCount >= 3
+                        ? 'bg-gray-600 text-gray-400 cursor-not-allowed'
+                        : 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white hover:shadow-xl hover:scale-105'
+                    }`}
+                  >
+                    Send Message
+                  </button>
+                  {error && <p className="mt-[10px] text-red-400">{error}</p>}
+                </div>
+              )}
+            </form>
+          </Card>
         </div>
       </div>
     </section>

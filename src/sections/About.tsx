@@ -1,5 +1,6 @@
 import { MapPin } from 'lucide-react';
 import mahiPic from '../assets/mahi_mathews.jpg';
+import { Card } from '../components/Card';
 
 type Tool = {
   name: string;
@@ -87,13 +88,10 @@ export function About({ tools, isDarkTheme }: AboutProps) {
           <h2 className="text-xl font-semibold mb-8 text-cyan-400">Tools & Technologies</h2>
           <div className="grid grid-cols-3 gap-4">
             {Object.keys(tools).map((toolHeader, index) => (
-              <div
-                key={index}
-                className={`p-4 rounded-xl text-center ${
-                  isDarkTheme ? 'bg-white/5' : 'bg-white/60'
-                } backdrop-blur-md border ${
-                  isDarkTheme ? 'border-white/10' : 'border-white/20'
-                } hover:scale-105 transition-all duration-300 flex flex-col items-center`}
+              <Card
+                isDarkTheme={isDarkTheme}
+                cardKey={index}
+                className="p-4 rounded-xl text-center flex flex-col items-center"
               >
                 <h3 className="text-xl font-bold mb-6">
                   <span className="text-cyan-400">{toolHeader}</span>
@@ -121,7 +119,7 @@ export function About({ tools, isDarkTheme }: AboutProps) {
                     </div>
                   ))}
                 </div>
-              </div>
+              </Card>
             ))}
           </div>
         </div>

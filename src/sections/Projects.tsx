@@ -1,4 +1,5 @@
 import { Github, ExternalLink, FolderOpen } from 'lucide-react';
+import { Card } from '../components/Card';
 
 type ProjectsProps = {
   projects: {
@@ -35,13 +36,10 @@ export function Projects({ projects, isDarkTheme }: ProjectsProps) {
           {projects
             .filter((p) => p.featured)
             .map((project, index) => (
-              <div
-                key={index}
-                className={`group p-6 rounded-2xl ${
-                  isDarkTheme ? 'bg-white/5' : 'bg-white/60'
-                } backdrop-blur-md border ${
-                  isDarkTheme ? 'border-white/10' : 'border-white/20'
-                } hover:scale-105 transition-all duration-300 hover:shadow-xl`}
+              <Card
+                isDarkTheme={isDarkTheme}
+                cardKey={index}
+                className="group p-6 rounded-2xl hover:shadow-xl"
               >
                 <div className="flex justify-between items-start mb-4">
                   <div className="text-4xl">{project.image}</div>
@@ -86,7 +84,7 @@ export function Projects({ projects, isDarkTheme }: ProjectsProps) {
                     </span>
                   ))}
                 </div>
-              </div>
+              </Card>
             ))}
         </div>
 
@@ -99,14 +97,7 @@ export function Projects({ projects, isDarkTheme }: ProjectsProps) {
           {projects
             .filter((p) => !p.featured)
             .map((project, index) => (
-              <div
-                key={index}
-                className={`p-4 rounded-xl ${
-                  isDarkTheme ? 'bg-white/5' : 'bg-white/40'
-                } backdrop-blur-md border ${
-                  isDarkTheme ? 'border-white/5' : 'border-white/20'
-                } hover:scale-105 transition-all duration-300`}
-              >
+              <Card isDarkTheme={isDarkTheme} cardKey={index}>
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-3">
                     <FolderOpen className="w-6 h-6 text-cyan-400" />
@@ -148,7 +139,7 @@ export function Projects({ projects, isDarkTheme }: ProjectsProps) {
                     </span>
                   ))}
                 </div>
-              </div>
+              </Card>
             ))}
         </div>
       </div>

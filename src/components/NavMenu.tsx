@@ -49,14 +49,17 @@ export function NavMenu({ scrollToSection, activeSection, onThemeChange }: NavMe
 
           {/* Social Links & Theme Toggle */}
           <div className="flex items-center space-x-4">
-            <a
-              href="mailto:riznakunheenkutty@gmail.com"
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection('contact');
+              }}
               className="text-xl hover:text-cyan-400 transition-colors"
             >
               <Mail className="w-5 h-5" />
-            </a>
+            </button>
             <a
-              href="https://github.com/riznapk"
+              href="https://github.com/mahi3mathews"
               target="_blank"
               rel="noopener noreferrer"
               className="text-xl hover:text-cyan-400 transition-colors"
@@ -64,7 +67,7 @@ export function NavMenu({ scrollToSection, activeSection, onThemeChange }: NavMe
               <Github className="w-5 h-5" />
             </a>
             <a
-              href="https://www.linkedin.com/in/rizna-kunheenkutty/"
+              href="https://linkedin.com/in/mahima-mathews"
               target="_blank"
               rel="noopener noreferrer"
               className="text-xl hover:text-cyan-400 transition-colors"

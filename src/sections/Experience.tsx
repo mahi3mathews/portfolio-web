@@ -1,4 +1,5 @@
 import { MapPin, Calendar } from 'lucide-react';
+import { Card } from '../components/Card';
 
 type ExperienceProps = {
   experiences: {
@@ -27,13 +28,10 @@ export function Experience({ experiences, isDarkTheme }: ExperienceProps) {
 
         <div className="space-y-8">
           {experiences.map((exp, index) => (
-            <div
-              key={index}
-              className={`p-8 rounded-2xl ${
-                isDarkTheme ? 'bg-white/5' : 'bg-white/60'
-              } backdrop-blur-md border ${
-                isDarkTheme ? 'border-white/10' : 'border-white/20'
-              } hover:scale-[1.02] transition-all duration-300`}
+            <Card
+              isDarkTheme={isDarkTheme}
+              cardKey={index}
+              className="p-8 rounded-2xl hover:scale-[1.02]"
             >
               <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
                 <div className="flex-1">
@@ -67,7 +65,7 @@ export function Experience({ experiences, isDarkTheme }: ExperienceProps) {
                   </li>
                 ))}
               </ul>
-            </div>
+            </Card>
           ))}
         </div>
       </div>

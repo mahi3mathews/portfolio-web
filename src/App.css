@@ -74,54 +74,6 @@ body.light-theme {
   }
 }
 
-/* Particles Background */
-/* .particles {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.particle {
-  position: absolute;
-  width: 4px;
-  height: 4px;
-  background: var(--accent-color);
-  border-radius: 50%;
-  opacity: 0.7;
-  animation: particle-float 8s linear infinite;
-}
-
-.particle:nth-child(odd) {
-  background: var(--secondary-accent);
-  animation-duration: 12s;
-}
-
-.particle:nth-child(3n) {
-  background: var(--tertiary-accent);
-  animation-duration: 10s;
-}
-
-@keyframes particle-float {
-  0% {
-    transform: translateY(100vh) translateX(0) rotate(0deg);
-    opacity: 0;
-  }
-  10% {
-    opacity: 0.7;
-  }
-  90% {
-    opacity: 0.7;
-  }
-  100% {
-    transform: translateY(-100px) translateX(100px) rotate(360deg);
-    opacity: 0;
-  }
-} */
-
 /* Navigation */
 .navbar {
   position: fixed;
@@ -687,13 +639,11 @@ body.light-theme .toggle-slider {
 .contact-info h2 {
   font-size: 2.5rem;
   margin-bottom: 20px;
-  color: var(--accent-color);
 }
 
 .contact-info p {
   font-size: 1.1rem;
   line-height: 1.8;
-  color: var(--text-secondary);
   margin-bottom: 30px;
 }
 
@@ -707,7 +657,6 @@ body.light-theme .toggle-slider {
   display: flex;
   align-items: center;
   gap: 15px;
-  color: var(--text-secondary);
 }
 
 .contact-icon {
@@ -722,13 +671,6 @@ body.light-theme .toggle-slider {
   font-weight: bold;
 }
 
-.contact-form {
-  background: var(--card-bg);
-  padding: 40px;
-  border-radius: 20px;
-  border: 1px solid var(--border-color);
-}
-
 .form-group {
   margin-bottom: 25px;
 }
@@ -736,7 +678,6 @@ body.light-theme .toggle-slider {
 .form-group label {
   display: block;
   margin-bottom: 8px;
-  color: var(--text-primary);
   font-weight: 500;
 }
 
@@ -744,10 +685,9 @@ body.light-theme .toggle-slider {
 .form-group textarea {
   width: 100%;
   padding: 15px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--border-color);
+  background: transparent;
+
   border-radius: 10px;
-  color: var(--text-primary);
   font-size: 1rem;
   transition: all 0.3s ease;
 }
@@ -774,7 +714,6 @@ body.light-theme .toggle-slider {
 
 .section-header p {
   font-size: 1.2rem;
-  color: var(--text-secondary);
   max-width: 600px;
   margin: 0 auto;
 }

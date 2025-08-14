@@ -69,10 +69,6 @@ const Portfolio = () => {
   };
 
   const tech = {
-    'Mobile Development': [
-      { name: 'React Native', icon: reactnative },
-      { name: 'Expo', icon: expo },
-    ],
     'Frontend Technologies': [
       { name: 'ReactJs', icon: react },
       { name: 'Next.js', icon: nextjs },
@@ -89,16 +85,20 @@ const Portfolio = () => {
       { name: 'Flask API', icon: flaskapi },
       { name: 'Python', icon: python },
     ],
-    Databases: [
-      { name: 'MongoDB', icon: mongodb },
-      { name: 'Firebase', icon: firebase },
-    ],
     'DevOps & Deployment': [
       { name: 'Vercel', icon: vercel },
       { name: 'Render.com', icon: rendercom },
       { name: 'Google Cloud', icon: googlecloud },
       { name: 'Netlify', icon: netlify },
       { name: 'Git', icon: git },
+    ],
+    'Mobile Development': [
+      { name: 'React Native', icon: reactnative },
+      { name: 'Expo', icon: expo },
+    ],
+    Databases: [
+      { name: 'MongoDB', icon: mongodb },
+      { name: 'Firebase', icon: firebase },
     ],
     'Development Tools & Design': [
       { name: 'VS Code', icon: vscode },
@@ -316,7 +316,7 @@ const Portfolio = () => {
       <Projects projects={projects} isDarkTheme={isDarkTheme} />
 
       {/* Contacts Session */}
-      <Contact />
+      <Contact isDarkTheme={isDarkTheme} />
 
       {/* Footer */}
       <Footer isDarkTheme={isDarkTheme} />
